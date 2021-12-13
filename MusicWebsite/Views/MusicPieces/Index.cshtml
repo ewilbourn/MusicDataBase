@@ -1,0 +1,174 @@
+﻿@model IEnumerable<MusicWebsite.Models.MusicPiece>
+
+@{
+    ViewBag.Title = "Music Pieces";
+}
+
+<h2>Music Pieces</h2>
+<script language="Javascript" type="text/javascript">
+    $(document).ready(function () {
+        
+        baseImagePath = '@Url.Content("~/images")';
+        var dtTable = $('#dtTable').DataTable({
+            lengthMenu: [[10, 50, 100, 200, 500], [10, 50, 100, 200, 500]],
+            iDisplayLength: 50,
+            serverSide: true,
+            ajax: {
+                url: '@Url.Action("GetPieces", "MusicPieces", null, Request.IsSecureConnection ? "https" : "http")',
+                type: 'POST',
+                contentType: 'application/json; charset=utf-8',
+                data: function (data) {
+                    return data = JSON.stringify($.extend({}, data, {
+                        temp: new Date().getTime() / 1000,
+                        ComposerID: $("#ComposerFilter").val(),    
+                        Year: $("#YearFilter").val(),  
+                    }));
+                }
+            },
+            processing: true,
+            paging: true,
+            order: [[0, "desc"]],
+            deferRender: true,
+            columns: [
+                {
+                    "data": "PieceName",
+                },
+                {
+                    "data": "FirstName",
+                },
+                {
+                    "data": "LastName",
+                },
+                {
+                    "data": "Year",
+                },
+                {
+                    "data": "Difficulty",
+                },
+
+                //{
+                //    "data": "RecordNumber",
+                //    "orderable": false,
+                //    "className": "noprint",
+                //    render: function (data, type, row) {
+                //       //this is for custom rendering of items in the column
+                        
+
+                //        //return links;
+                //    },
+                //}
+            ],
+            //"fnRowCallback": function (row, data, iDisplayIndex) {
+                //$(row).removeClass('odd');
+                //$(row).removeClass('even');
+
+                //if (iDisplayIndex % 2 == 0)
+                //    $(row).addClass("evenRow").attr({ "onMouseOut": "this.className='evenRow'", "onMouseOver": "this.className='highlight'" });
+                //else
+                //    $(row).addClass("oddRow").attr({ "onMouseOut": "this.className='oddRow'", "onMouseOver": "this.className='highlight'" });
+
+
+                //return row;
+            //}
+        });
+
+        $("#ComposerFilter").change(function () {
+            if (dtTable)
+                dtTable.ajax.reload();
+        });
+
+        $("#YearFilter").change(function () {
+            if (dtTable)
+                dtTable.ajax.reload();
+        });
+
+        $(window).resize(function () {
+            //dtTable.draw();
+        });
+            
+    });
+</script>
+
+<div class="row filter-search-none">
+    <div class="col-sm-12">
+        <div class="moveplchld" style="margin-top:0px;">
+            <table>
+                <tr>
+                    <td><label for="ComposerFilter">Composer @Html.DropDownList("ComposerFilter", ViewBag.ComposerFilter as List<SelectListItem>, new { @class = "form-control", @style = "font-size:12px;height:28px;" })</label></td>
+                    <td>&nbsp;&nbsp;<label for="YearFilter">Composed Year @Html.DropDownList("YearFilter", ViewBag.ComposerFilter as List<SelectListItem>, new { @class = "form-control", @style = "font-size:12px;height:28px;" })</label></td>
+                    <td></td>
+                </tr>
+            </table>
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<table id="dtTable" class="table table-striped table-bordered" width="100%">
+    <thead>
+        <tr>
+            <th>
+                Piece Name
+            </th>
+            <th>
+                Composer First 
+            </th>
+            <th>
+                Composer Last
+            </th>
+            <th>
+                Year
+            </th>
+            <th>
+                Difficulty
+            </th>
+
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Difficulty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Composer.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OpusNamingConvention.PieceType)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Difficulty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Year)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Composer.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OpusNamingConvention.PieceType)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RecordNumber })
+            </td>
+        </tr>
+    }
+
+    </table>*@

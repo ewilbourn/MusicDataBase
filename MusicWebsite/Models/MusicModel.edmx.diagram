@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a101fbaf864d48b994a57ce1dd376030" Name="Diagram1">
+        <EntityTypeShape EntityType="SheetMusicModel.Composer" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SheetMusicModel.MusicPiece" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SheetMusicModel.OpusNamingConvention" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="SheetMusicModel.FK__MusicPiec__Compo__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="SheetMusicModel.FK__MusicPiec__Namin__403A8C7D" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SheetMusicModel.view_MusicPieces" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="SheetMusicModel.AspNetRole" Width="1.5" PointX="3.375" PointY="6.5" />
+        <EntityTypeShape EntityType="SheetMusicModel.AspNetUserClaim" Width="1.5" PointX="7.875" PointY="7.625" />
+        <EntityTypeShape EntityType="SheetMusicModel.AspNetUserLogin" Width="1.5" PointX="7.875" PointY="5" />
+        <EntityTypeShape EntityType="SheetMusicModel.AspNetUser" Width="1.5" PointX="5.625" PointY="5.375" />
+        <AssociationConnector Association="SheetMusicModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="SheetMusicModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="SheetMusicModel.AspNetUserRoles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

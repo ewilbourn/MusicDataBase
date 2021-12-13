@@ -1,0 +1,50 @@
+﻿@model MusicWebsite.Models.MusicPiece
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MusicPiece</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Difficulty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Difficulty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Composer.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Composer.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OpusNamingConvention.PieceType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpusNamingConvention.PieceType)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RecordNumber }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

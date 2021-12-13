@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SheetMusicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AspNetRoles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserClaims">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ClaimType" Type="nvarchar(max)" />
+    <Property Name="ClaimValue" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="AspNetUserLogins">
+    <Key>
+      <PropertyRef Name="LoginProvider" />
+      <PropertyRef Name="ProviderKey" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUserRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AspNetUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar(max)" />
+    <Property Name="SecurityStamp" Type="nvarchar(max)" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" />
+    <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+    <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+    <Property Name="LockoutEndDateUtc" Type="datetime" />
+    <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+    <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Composer">
+    <Key>
+      <PropertyRef Name="ComposerID" />
+    </Key>
+    <Property Name="ComposerID" Type="int" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="YearBorn" Type="int" />
+    <Property Name="YearDied" Type="int" />
+    <Property Name="CityBorn" Type="varchar" MaxLength="50" />
+    <Property Name="CityDied" Type="varchar" MaxLength="50" />
+    <Property Name="CountryBorn" Type="varchar" MaxLength="50" />
+    <Property Name="CountryDied" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MusicPiece">
+    <Key>
+      <PropertyRef Name="RecordNumber" />
+    </Key>
+    <Property Name="RecordNumber" Type="int" Nullable="false" />
+    <Property Name="NamingConventionID" Type="int" Nullable="false" />
+    <Property Name="ComposerID" Type="int" Nullable="false" />
+    <Property Name="Difficulty" Type="int" />
+    <Property Name="Year" Type="int" />
+    <Property Name="Instrument" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="OpusNamingConvention">
+    <Key>
+      <PropertyRef Name="NamingConventionID" />
+    </Key>
+    <Property Name="NamingConventionID" Type="int" Nullable="false" />
+    <Property Name="PieceType" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Opus" Type="int" Nullable="false" />
+    <Property Name="Number" Type="int" />
+    <Property Name="KeySignature" Type="varchar" MaxLength="255" />
+    <Property Name="Mode" Type="varchar" MaxLength="255" />
+    <Property Name="AlternateName" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SheetMusic.dbo.view_MusicPieces' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="view_MusicPieces">
+    <Key>
+      <PropertyRef Name="RecordNumber" />
+    </Key>
+    <Property Name="Difficulty" Type="int" />
+    <Property Name="RecordNumber" Type="int" Nullable="false" />
+    <Property Name="Year" Type="int" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="101" Nullable="false" />
+    <Property Name="PieceName" Type="varchar" MaxLength="1096" />
+    <Property Name="ComposerID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__MusicPiec__Compo__412EB0B6">
+    <End Role="Composer" Type="Self.Composer" Multiplicity="1" />
+    <End Role="MusicPiece" Type="Self.MusicPiece" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Composer">
+        <PropertyRef Name="ComposerID" />
+      </Principal>
+      <Dependent Role="MusicPiece">
+        <PropertyRef Name="ComposerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MusicPiec__Namin__403A8C7D">
+    <End Role="OpusNamingConvention" Type="Self.OpusNamingConvention" Multiplicity="1" />
+    <End Role="MusicPiece" Type="Self.MusicPiece" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OpusNamingConvention">
+        <PropertyRef Name="NamingConventionID" />
+      </Principal>
+      <Dependent Role="MusicPiece">
+        <PropertyRef Name="NamingConventionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserClaims">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserLogins">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+    <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetRoles">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUserRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SheetMusicModelStoreContainer">
+    <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Composer" EntityType="Self.Composer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MusicPiece" EntityType="Self.MusicPiece" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OpusNamingConvention" EntityType="Self.OpusNamingConvention" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="view_MusicPieces" EntityType="Self.view_MusicPieces" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [view_MusicPieces].[Difficulty] AS [Difficulty], 
+    [view_MusicPieces].[RecordNumber] AS [RecordNumber], 
+    [view_MusicPieces].[Year] AS [Year], 
+    [view_MusicPieces].[FirstName] AS [FirstName], 
+    [view_MusicPieces].[LastName] AS [LastName], 
+    [view_MusicPieces].[FullName] AS [FullName], 
+    [view_MusicPieces].[PieceName] AS [PieceName], 
+    [view_MusicPieces].[ComposerID] AS [ComposerID]
+    FROM [dbo].[view_MusicPieces] AS [view_MusicPieces]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__MusicPiec__Compo__412EB0B6" Association="Self.FK__MusicPiec__Compo__412EB0B6">
+      <End Role="Composer" EntitySet="Composer" />
+      <End Role="MusicPiece" EntitySet="MusicPiece" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MusicPiec__Namin__403A8C7D" Association="Self.FK__MusicPiec__Namin__403A8C7D">
+      <End Role="OpusNamingConvention" EntitySet="OpusNamingConvention" />
+      <End Role="MusicPiece" EntitySet="MusicPiece" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+      <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

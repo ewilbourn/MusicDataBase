@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SheetMusicModelStoreContainer" CdmEntityContainer="SheetMusicEntities">
+    <EntitySetMapping Name="Composers">
+      <EntityTypeMapping TypeName="SheetMusicModel.Composer">
+        <MappingFragment StoreEntitySet="Composer">
+          <ScalarProperty Name="ComposerID" ColumnName="ComposerID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="YearBorn" ColumnName="YearBorn" />
+          <ScalarProperty Name="YearDied" ColumnName="YearDied" />
+          <ScalarProperty Name="CityBorn" ColumnName="CityBorn" />
+          <ScalarProperty Name="CityDied" ColumnName="CityDied" />
+          <ScalarProperty Name="CountryBorn" ColumnName="CountryBorn" />
+          <ScalarProperty Name="CountryDied" ColumnName="CountryDied" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MusicPieces">
+      <EntityTypeMapping TypeName="SheetMusicModel.MusicPiece">
+        <MappingFragment StoreEntitySet="MusicPiece">
+          <ScalarProperty Name="Instrument" ColumnName="Instrument" />
+          <ScalarProperty Name="RecordNumber" ColumnName="RecordNumber" />
+          <ScalarProperty Name="NamingConventionID" ColumnName="NamingConventionID" />
+          <ScalarProperty Name="ComposerID" ColumnName="ComposerID" />
+          <ScalarProperty Name="Difficulty" ColumnName="Difficulty" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OpusNamingConventions">
+      <EntityTypeMapping TypeName="SheetMusicModel.OpusNamingConvention">
+        <MappingFragment StoreEntitySet="OpusNamingConvention">
+          <ScalarProperty Name="NamingConventionID" ColumnName="NamingConventionID" />
+          <ScalarProperty Name="PieceType" ColumnName="PieceType" />
+          <ScalarProperty Name="Opus" ColumnName="Opus" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="KeySignature" ColumnName="KeySignature" />
+          <ScalarProperty Name="Mode" ColumnName="Mode" />
+          <ScalarProperty Name="AlternateName" ColumnName="AlternateName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="view_MusicPieces">
+      <EntityTypeMapping TypeName="SheetMusicModel.view_MusicPieces">
+        <MappingFragment StoreEntitySet="view_MusicPieces">
+          <ScalarProperty Name="ComposerID" ColumnName="ComposerID" />
+          <ScalarProperty Name="PieceName" ColumnName="PieceName" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="RecordNumber" ColumnName="RecordNumber" />
+          <ScalarProperty Name="Difficulty" ColumnName="Difficulty" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetRoles">
+      <EntityTypeMapping TypeName="SheetMusicModel.AspNetRole">
+        <MappingFragment StoreEntitySet="AspNetRoles">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserClaims">
+      <EntityTypeMapping TypeName="SheetMusicModel.AspNetUserClaim">
+        <MappingFragment StoreEntitySet="AspNetUserClaims">
+          <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+          <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUserLogins">
+      <EntityTypeMapping TypeName="SheetMusicModel.AspNetUserLogin">
+        <MappingFragment StoreEntitySet="AspNetUserLogins">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+          <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AspNetUsers">
+      <EntityTypeMapping TypeName="SheetMusicModel.AspNetUser">
+        <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+          <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+          <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+          <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+          <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="AspNetUserRoles" TypeName="SheetMusicModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+      <EndProperty Name="AspNetUser">
+        <ScalarProperty Name="Id" ColumnName="UserId" />
+      </EndProperty>
+      <EndProperty Name="AspNetRole">
+        <ScalarProperty Name="Id" ColumnName="RoleId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
