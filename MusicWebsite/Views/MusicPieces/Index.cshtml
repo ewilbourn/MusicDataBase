@@ -22,6 +22,7 @@
                         temp: new Date().getTime() / 1000,
                         ComposerID: $("#ComposerFilter").val(),    
                         Year: $("#YearFilter").val(),  
+                        Difficulty: $("#DifficultyFilter").val(),  
                     }));
                 }
             },
@@ -82,6 +83,11 @@
                 dtTable.ajax.reload();
         });
 
+        $("#DifficultyFilter").change(function () {
+            if (dtTable)
+                dtTable.ajax.reload();
+        });
+
         $(window).resize(function () {
             //dtTable.draw();
         });
@@ -95,7 +101,8 @@
             <table>
                 <tr>
                     <td><label for="ComposerFilter">Composer @Html.DropDownList("ComposerFilter", ViewBag.ComposerFilter as List<SelectListItem>, new { @class = "form-control", @style = "font-size:12px;height:28px;" })</label></td>
-                    <td>&nbsp;&nbsp;<label for="YearFilter">Composed Year @Html.DropDownList("YearFilter", ViewBag.ComposerFilter as List<SelectListItem>, new { @class = "form-control", @style = "font-size:12px;height:28px;" })</label></td>
+                    <td>&nbsp;&nbsp;<label for="YearFilter">Year @Html.DropDownList("YearFilter", ViewBag.YearFilter as List<SelectListItem>, new { @class = "form-control", @style = "font-size:12px;height:28px;" })</label></td>
+                    <td>&nbsp;&nbsp;<label for="DifficultyFilter">Difficulty Level @Html.DropDownList("DifficultyFilter", ViewBag.DifficultyFilter as List<SelectListItem>, new { @class = "form-control", @style = "font-size:12px;height:28px;" })</label></td>
                     <td></td>
                 </tr>
             </table>
@@ -114,10 +121,10 @@
                 Piece Name
             </th>
             <th>
-                Composer First 
+                Composer First Name
             </th>
             <th>
-                Composer Last
+                Composer Last Name
             </th>
             <th>
                 Year
