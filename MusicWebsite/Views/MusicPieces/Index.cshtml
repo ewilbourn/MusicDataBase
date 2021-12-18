@@ -66,35 +66,7 @@
                 {
                     "data": "Instrument",
                 },
-
-
-                //{
-                //    "data": "RecordNumber",
-                //    "orderable": false,
-                //    "className": "noprint",
-                //    render: function (data, type, row) {
-                //       //this is for custom rendering of items in the column
-
-
-                //        //return links;
-                //    },
-                //}
             ],
-           @*"fnRowCallback": function (row, data, iDisplayIndex) {
-                $(row).removeClass('odd');
-                $(row).removeClass('even');
-
-                if (iDisplayIndex % 2 == 0)
-                    $(row).addClass("evenRow").attr({ "onMouseOut": "this.className='evenRow'", "onMouseOver": "this.className='highlight'" });
-                else
-                    $(row).addClass("oddRow").attr({ "onMouseOut": "this.className='oddRow'", "onMouseOver": "this.className='highlight'" });
-
-                return row;
-            }*@
-
-            @*createdRow: function (row, data, index) {
-                $("td:first", row).attr("title", data.tooltip);
-            }*@
         });
 
         $("#ComposerFilter").change(function () {
