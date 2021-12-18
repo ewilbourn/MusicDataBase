@@ -7,13 +7,6 @@
 <h2>Music Records</h2>
 <script language="Javascript" type="text/javascript">
     $(document).ready(function () {
-        // create tooltip text in the data object
-        @*$.each(dataset.data, function (i, item) {
-            item.tooltip = item.PieceName
-                + ", " + item.FirstName
-                + ", " + item.LastName;
-        })*@
-
         baseImagePath = '@Url.Content("~/images")';
         var dtTable = $('#dtTable').DataTable({
             lengthMenu: [[10, 25, 50, 100, 200], [10, 25, 50, 100, 200]],
@@ -38,14 +31,6 @@
             paging: true,
             order: [[0, "desc"]],
             deferRender: true,
-            @*tooltip_data =[
-                {
-                    column: { 'value': str(value), 'type': 'markdown' }
-                for column, value in row.items()
-                } for row in df.to_dict('records')
-            ],*@
-            //tooltip_delay = 0,
-            //tooltip_duration = None
 
             columns: [
                 {
