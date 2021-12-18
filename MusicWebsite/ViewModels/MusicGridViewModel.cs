@@ -34,6 +34,8 @@ namespace MusicWebsite.ViewModels
 
         public int? Difficulty { get; set; }
 
+        public string Instrument { get; set; }
+
         public MusicGridViewModel(view_MusicPieces source)
         {
             this.RecordNumber = source.RecordNumber;
@@ -43,6 +45,7 @@ namespace MusicWebsite.ViewModels
             this.PieceName = source.PieceName;
             this.Year = source.Year;
             this.Difficulty = source.Difficulty;
+            this.Instrument = source.Instrument;
         }
 
     }

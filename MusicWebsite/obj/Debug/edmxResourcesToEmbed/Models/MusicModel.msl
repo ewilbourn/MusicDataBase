@@ -44,6 +44,7 @@
     <EntitySetMapping Name="view_MusicPieces">
       <EntityTypeMapping TypeName="SheetMusicModel.view_MusicPieces">
         <MappingFragment StoreEntitySet="view_MusicPieces">
+          <ScalarProperty Name="Instrument" ColumnName="Instrument" />
           <ScalarProperty Name="ComposerID" ColumnName="ComposerID" />
           <ScalarProperty Name="PieceName" ColumnName="PieceName" />
           <ScalarProperty Name="FullName" ColumnName="FullName" />

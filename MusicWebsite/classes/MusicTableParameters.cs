@@ -20,5 +20,7 @@ namespace MusicWebsite.classes
         public int ComposerID { get; set; }
 
         public int Year { get; set; }
+
+        public string Instrument { get; set; }
     }
 }

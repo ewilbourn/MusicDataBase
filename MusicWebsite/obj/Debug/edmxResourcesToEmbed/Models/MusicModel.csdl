@@ -107,6 +107,7 @@
     <Property Name="FullName" Type="String" Nullable="false" MaxLength="101" FixedLength="false" Unicode="false" />
     <Property Name="PieceName" Type="String" MaxLength="1096" FixedLength="false" Unicode="false" />
     <Property Name="ComposerID" Type="Int32" Nullable="false" />
+    <Property Name="Instrument" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="AspNetRole">
     <Key>

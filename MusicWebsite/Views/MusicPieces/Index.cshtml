@@ -4,13 +4,19 @@
     ViewBag.Title = "Music Pieces";
 }
 
-<h2>Music Pieces</h2>
+<h2>Music Records</h2>
 <script language="Javascript" type="text/javascript">
     $(document).ready(function () {
-        
+        // create tooltip text in the data object
+        @*$.each(dataset.data, function (i, item) {
+            item.tooltip = item.PieceName
+                + ", " + item.FirstName
+                + ", " + item.LastName;
+        })*@
+
         baseImagePath = '@Url.Content("~/images")';
         var dtTable = $('#dtTable').DataTable({
-            lengthMenu: [[10, 50, 100, 200, 500], [10, 50, 100, 200, 500]],
+            lengthMenu: [[10, 25, 50, 100, 200], [10, 25, 50, 100, 200]],
             iDisplayLength: 50,
             serverSide: true,
             ajax: {
@@ -18,18 +24,29 @@
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
                 data: function (data) {
-                    return data = JSON.stringify($.extend({}, data, {
-                        temp: new Date().getTime() / 1000,
-                        ComposerID: $("#ComposerFilter").val(),    
-                        Year: $("#YearFilter").val(),  
-                        Difficulty: $("#DifficultyFilter").val(),  
-                    }));
+                    return data = JSON.stringify($.extend({},
+                        data, {
+                            temp: new Date().getTime() / 1000,
+                            ComposerID: $("#ComposerFilter").val(),
+                            Year: $("#YearFilter").val(),
+                            Difficulty: $("#DifficultyFilter").val(),
+                        }
+                    ));
                 }
             },
             processing: true,
             paging: true,
             order: [[0, "desc"]],
             deferRender: true,
+            @*tooltip_data =[
+                {
+                    column: { 'value': str(value), 'type': 'markdown' }
+                for column, value in row.items()
+                } for row in df.to_dict('records')
+            ],*@
+            //tooltip_delay = 0,
+            //tooltip_duration = None
+
             columns: [
                 {
                     "data": "PieceName",
@@ -46,6 +63,10 @@
                 {
                     "data": "Difficulty",
                 },
+                {
+                    "data": "Instrument",
+                },
+
 
                 //{
                 //    "data": "RecordNumber",
@@ -53,24 +74,27 @@
                 //    "className": "noprint",
                 //    render: function (data, type, row) {
                 //       //this is for custom rendering of items in the column
-                        
+
 
                 //        //return links;
                 //    },
                 //}
             ],
-            //"fnRowCallback": function (row, data, iDisplayIndex) {
-                //$(row).removeClass('odd');
-                //$(row).removeClass('even');
+           @*"fnRowCallback": function (row, data, iDisplayIndex) {
+                $(row).removeClass('odd');
+                $(row).removeClass('even');
 
-                //if (iDisplayIndex % 2 == 0)
-                //    $(row).addClass("evenRow").attr({ "onMouseOut": "this.className='evenRow'", "onMouseOver": "this.className='highlight'" });
-                //else
-                //    $(row).addClass("oddRow").attr({ "onMouseOut": "this.className='oddRow'", "onMouseOver": "this.className='highlight'" });
+                if (iDisplayIndex % 2 == 0)
+                    $(row).addClass("evenRow").attr({ "onMouseOut": "this.className='evenRow'", "onMouseOver": "this.className='highlight'" });
+                else
+                    $(row).addClass("oddRow").attr({ "onMouseOut": "this.className='oddRow'", "onMouseOver": "this.className='highlight'" });
 
+                return row;
+            }*@
 
-                //return row;
-            //}
+            @*createdRow: function (row, data, index) {
+                $("td:first", row).attr("title", data.tooltip);
+            }*@
         });
 
         $("#ComposerFilter").change(function () {
@@ -91,7 +115,7 @@
         $(window).resize(function () {
             //dtTable.draw();
         });
-            
+
     });
 </script>
 
@@ -106,10 +130,6 @@
                     <td></td>
                 </tr>
             </table>
-
-
-
-
         </div>
     </div>
 </div>
@@ -132,13 +152,18 @@
             <th>
                 Difficulty
             </th>
+            <th>
+                Instrument
+            </th>
 
         </tr>
     </thead>
     <tbody></tbody>
 </table>
 
-@*<p>
+@*this creates a data table with edit capabilities*@
+@*
+<p>
         @Html.ActionLink("Create New", "Create")
     </p>
     <table class="table">

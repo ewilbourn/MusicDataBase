@@ -63,12 +63,8 @@ namespace MusicWebsite.Controllers
                                                 (p.ComposerID == 0 || d.ComposerID == p.ComposerID) &&
                                                 (p.Year == 0 || p.Year == d.Year) &&
                                                 (p.Difficulty == 0 || p.Difficulty == d.Difficulty) &&
-                                                (p.Search.Value == null ||
-                                                    (
-                                                    (d.FullName.Contains(p.Search.Value)) ||
-                                                    d.PieceName.Contains(p.Search.Value)
-                                                    )
-                                                )
+                                                (p.Search.Value == null || 
+                                                ((d.FullName.Contains(p.Search.Value)) || d.PieceName.Contains(p.Search.Value)))
                                            select d)
                .AsQueryable();
 
@@ -91,6 +87,12 @@ namespace MusicWebsite.Controllers
                             raw = raw.OrderByDescending(o => o.PieceName);
                         else
                             raw = raw.OrderBy(o => o.PieceName);
+                        break;
+                    case "Instrument":
+                        if (p.Order[0].Dir == DataTableViewModel.DataTablesOrderDir.DESC)
+                            raw = raw.OrderByDescending(o => o.Instrument);
+                        else
+                            raw = raw.OrderBy(o => o.Instrument);
                         break;
 
                     default:

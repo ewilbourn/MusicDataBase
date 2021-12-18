@@ -102,6 +102,7 @@ warning 6002: The table/view 'SheetMusic.dbo.view_MusicPieces' does not have a p
     <Property Name="FullName" Type="varchar" MaxLength="101" Nullable="false" />
     <Property Name="PieceName" Type="varchar" MaxLength="1096" />
     <Property Name="ComposerID" Type="int" Nullable="false" />
+    <Property Name="Instrument" Type="varchar" MaxLength="255" />
   </EntityType>
   <Association Name="FK__MusicPiec__Compo__412EB0B6">
     <End Role="Composer" Type="Self.Composer" Multiplicity="1" />
@@ -201,7 +202,8 @@ warning 6002: The table/view 'SheetMusic.dbo.view_MusicPieces' does not have a p
     [view_MusicPieces].[LastName] AS [LastName], 
     [view_MusicPieces].[FullName] AS [FullName], 
     [view_MusicPieces].[PieceName] AS [PieceName], 
-    [view_MusicPieces].[ComposerID] AS [ComposerID]
+    [view_MusicPieces].[ComposerID] AS [ComposerID], 
+    [view_MusicPieces].[Instrument] AS [Instrument]
     FROM [dbo].[view_MusicPieces] AS [view_MusicPieces]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK__MusicPiec__Compo__412EB0B6" Association="Self.FK__MusicPiec__Compo__412EB0B6">

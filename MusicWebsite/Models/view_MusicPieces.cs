@@ -22,5 +22,6 @@ namespace MusicWebsite.Models
         public string FullName { get; set; }
         public string PieceName { get; set; }
         public int ComposerID { get; set; }
+        public string Instrument { get; set; }
     }
 }
